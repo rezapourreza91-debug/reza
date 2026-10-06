@@ -1,0 +1,90 @@
+# برنامهٔ صحت‌سنجی تجربی — لتیس bowtie سی‌وسه‌سلولی (نسخهٔ ۱، ۲۰۲۶-۱۰-۰۶)
+
+## خلاصه
+پنج الگو، همه با ۱۰ سلول پر از ۳۳ (جرم ثابت)، هر کدام ۳ تکرار:
+چهار طرح از ۲۰۲ اجرای آباکوس که بازهٔ EA را با فاصلهٔ کافی پوشش می‌دهند، و یک طرح کور که فقط مدل جانشین (GP) آن را پیش‌بینی کرده و هرگز شبیه‌سازی نشده است.
+هدف اصلی آزمون، **رتبه** است، نه سطح مطلق؛ دقیقاً همان تز مقاله: «Rank transfers, level does not».
+
+| نمونه | اجرا | EA_FE (J) | سازوکار | چرا |
+|---|---|---|---|---|
+| P1 | 1097 | 214.6 | خوشهٔ مرکزی، percolating، IPCF_kind = knee | سر بالای نردبان؛ بهترین طرح شبیه‌سازی‌شده |
+| P2 | 1104 | 159.6 | یک زنجیرهٔ عمودی کامل، peak | از دو طرح FE-verification (مش M، اصطکاک F، hourglass H) و نیمی از جفت آینه‌ای 1065/1104 |
+| P3 | 1016 | 114.3 | پراکنده، بدون مسیر عمودی، peak | طرح دوم FE-verification؛ نزدیک میانهٔ ۱۲۱ طرح ده‌سلولی (117.9 J) |
+| P4 | 1093 | 62.4 | نوار افقی پایین، بدترین | سر پایین نردبان؛ نیمی از نمونه‌ها **وارونه** تست شوند = اجرای 1094 (FE 77.9 J) |
+| P5 | GP01 (کور) | GP: 190 ± 13 | دو زنجیرهٔ عمودی موازی | آزمون کور مدل جانشین؛ پیش‌بینی ثبت‌شده: بین P2 و P1 |
+| X1 | قاب خالی | — | بدون سلول پر | اختیاری؛ ساده‌ترین بررسی ماده و قاب بدون tie |
+
+شکل الگوها: `patterns_preview.png` — جدول کامل با c1..c33: `validation_patterns_v1.csv`.
+
+## چرا این انتخاب (و منابع)
+1. **فاصلهٔ EA بین طرح‌های مجاور ۳۴٪ تا ۸۳٪ است.** پراکندگی نمونه‌به‌نمونهٔ FDM در این پروژه هنوز اندازه‌گیری نشده؛ با فرض CV حدود ۵ تا ۱۰٪، این فاصله‌ها با n = 3 قابل تفکیک‌اند. برای ABS چاپی، پراکندگی استحکام و اثر جهت چاپ قابل‌توجه گزارش شده است (Keleş et al., 2017).
+2. **پنج طرح متمایز یعنی آزمون رتبه معنی‌دار است:** احتمال ترتیب کاملاً درست به‌صورت شانسی 1/120 = 0.008 است. با چهار طرح 1/24 = 0.04 می‌شد.
+3. **جرم ثابت (۱۰ از ۳۳)** همان متغیر کنترل‌شدهٔ کل داده‌ها و ادعای مقاله است؛ نمونهٔ fill 20 در برنامهٔ قبلی (EXP_specimen_plan.csv) به مقالهٔ ۲ (اوکستیک، ν) مربوط است و از این مجموعه حذف شد.
+4. **دو کلاس IPCF (knee در 1097، peak در 1104/1016/1093)** پوشش داده شده‌اند، پس می‌شود دید آیا قاعدهٔ دوگانهٔ IPCF در منحنی واقعی هم دیده می‌شود (ادعای «تعریف متریک مهم‌تر از الگوریتم است»).
+5. **1104 و 1016 همان دو طرحی‌اند که مطالعات همگرایی مش، اصطکاک و hourglass روی آن‌ها اجرا شده،** پس آزمایش مستقیماً به بودجهٔ عدم‌قطعیت عددی وصل می‌شود.
+6. **وارونه‌کردن 1093 (= 1094) هزینهٔ چاپ اضافه ندارد** (همان STL). FE به خاطر شرایط مرزی نامتقارن ۲۵٪ اختلاف EA پیش‌بینی می‌کند؛ آزمون فشار واقعی تقریباً متقارن است. این مستقیم‌ترین پاسخ به ایراد O5 داور (BC و نبود لنگر تجربی) است. ریسک: اگر اختلاف تجربی نزدیک صفر باشد، یعنی آن ۲۵٪ مصنوع BC است؛ باید در مقاله صادقانه گزارش شود.
+7. **روال رایج مجلات:** مقالات معتبر لتیس re-entrant چاپی، مدل FE را با فشار شبه‌استاتیک نمونه‌های چاپی صحت‌سنجی می‌کنند و منحنی نیرو-جابه‌جایی و توالی تغییر شکل را مقایسه می‌کنند (Choudhry et al., 2021, با Abaqus/Explicit؛ Mortezapour et al., 2024, ABS چاپ FDM با مدل Drucker-Prager، همان کلاس مدل این پروژه؛ Sadigh et al., 2026, با Drucker-Prager خطی + آسیب نرم و معیار NRMSE روی کل منحنی). در مقالات طراحی با یادگیری ماشین، چند طرح منتخب یا بهینه چاپ و با پیش‌بینی مقایسه می‌شود (Lee et al., 2022؛ Xiao et al., 2024؛ Yüksel et al., 2023). Dalakoti et al. (2026)، نزدیک‌ترین رقیب، ۳ نمونه برای هر طرح تست کرده است (طبق LIT_VERIFIED_2026-09-04.md).
+
+## طرح کور GP01
+- الگو: `000110000011000001100001010001001` (سلول‌های 4, 5, 11, 12, 18, 19, 24, 26, 30, 33).
+- پیش‌بینی: EA = 190.1 ± 12.5 J، Fplat = 18.0 ± 1.1 kN، d_dens = 16.6 mm.
+- نو بودن: فاصلهٔ همینگ ≥ 6 از همهٔ ۲۸۱ طرح شبیه‌سازی‌شده یا پیشنهادشده (با آینه و وارونه‌هایشان)؛ نزدیک‌ترین اجراها 1119، 1120 و 1084 با فاصلهٔ 8.
+- مدل: همان `inverse_design_v4.Surrogate` پروژه، بدون تغییر. CV پنج‌لایه روی خانوادهٔ A: R2 = 0.79، MAE = 9.6 J. این مدل طرح‌های بالای 165 J را به‌طور میانگین 9 J کمتر پیش‌بینی می‌کند.
+- پیش‌ثبت: `REGISTRATION_blind_GP01_2026-10-06.md` با SHA-256 در فایل `.sha256`. **قبل از چاپ این فایل را تغییر نده.** بعد از ثبت، می‌توانی GP01 را در آباکوس هم اجرا کنی تا مقایسه سه‌طرفه (GP، FE، آزمایش) شود.
+
+## فایل‌های چاپ (پوشهٔ STL)
+| فایل | ابعاد (mm) | جرم هدف در 1.04 g/cm³ |
+|---|---|---|
+| P1..P5 (ده سلول پر) | 64.5 × 49.125 × 25 | **48.97 g** |
+| X1_empty_frame | 64.5 × 49.125 × 25 | 37.85 g |
+| T1_tensile_ISO527-2_1BA | 75 × 10 × 2 | — |
+| T2_compression_ASTM-D695_prism | 12.7 × 12.7 × 25.4 | — |
+
+- جهت: صفحهٔ لتیس در XY (تخت چاپ شود)، ۲۵ mm در جهت Z، بارگذاری در جهت Y (۴۹.۱۲۵). همان قاعدهٔ `EXP_print_parameters_v1.md` (عرض اکستروژن 0.50 mm، ۳ پریمتر، بدون infill، محفظهٔ بسته برای ABS).
+- **هندسه:** فایل‌های Abaqus (J_1104.inp و lattice_template_33.cae) روی سرور (Z:\33cell) هستند، نه در H:\claude. هندسه از نقشهٔ برداری خود پروژه (`reentrant-dim.pdf`، مقیاس واقعی) استخراج شد. مساحت هر سلول پر با FE تا 0.03٪ می‌خواند؛ **مساحت قاب 2.1٪ بیشتر از FE است** (1455.8 در برابر 1425.7 mm²). به همین دلیل جرم هدف 48.97 g است، نه 48.14 g که در EXP_print_parameters آمده. اگر J_1104.inp را در H:\claude کپی کنی، اختلاف را پیدا و STLها را از خود deck بازسازی می‌کنم.
+- قاعدهٔ رد: جرم بیش از ۳٪ کمتر یا بیشتر از هدف بالا.
+
+## تعداد نمونه
+| مورد | تعداد |
+|---|---|
+| P1, P2, P3, P5 | ۳ × ۴ = ۱۲ |
+| P4 | ۶ (۳ رو به بالا، ۳ وارونه = 1094) |
+| X1 (اختیاری) | ۳ |
+| نمونهٔ قربانی برای برش و بررسی حفره | ۱ |
+| کشش T1 | ۵ |
+| فشار T2 | ۵ |
+
+## نمونهٔ کشش و کالیبراسیون ماده
+- **پیشنهاد: ISO 527-2 نوع 1BA** (طول ۷۵، عرض گیج ۵، ضخامت ۲، طول موازی ۳۰ mm)، تخت چاپ شود و رشته‌ها در امتداد محور نمونه باشند (عرض گیج ۵ mm = ۱۰ خط 0.5 mm؛ پریمتر را ۵ بگذار تا مقطع گیج تماماً پریمتر طولی باشد). دلیل: شکل نمونه روی ناهمسانی اندازه‌گیری‌شده در قطعات چاپی ABS اثر دارد (Torrado et al., 2016) و هندسهٔ ISO 527-2 کمترین تمرکز تنش را نشان داده است (Faidallah et al., 2023). جایگزین معادل: ASTM D638 نوع IV یا V.
+- همان قرقره، همان دستگاه، همان دما و عرض خط، هم‌زمان با نمونه‌های لتیس. حداقل ۵ نمونه. سرعت 1 mm/min برای مدول، با اکستنسومتر.
+- **چرا فشار هم:** مدل ماده Drucker-Prager است (β = 12°)؛ زاویهٔ اصطکاک فقط با داشتن تسلیم کششی **و** فشاری قابل کالیبره کردن است. پس ۵ منشور فشاری ASTM D695 (12.7 × 12.7 × 25.4 mm) هم چاپ کن.
+
+## روش آزمون فشار لتیس
+- ظرفیت دستگاه ≥ 50 kN (FE تا 22 kN در ۱۶ mm و بیشتر در تراکم).
+- سرعت 5 mm/min (نرخ کرنش اولیه حدود 1.7e-3 1/s، داخل بازهٔ شبه‌استاتیک ISO 13314). جابه‌جایی تا ۲۰ mm.
+- فک‌ها: صفحات تخت، بدون چسب. در FE، صفحات به قاب tie شده‌اند؛ این اختلاف را در Methods بنویس.
+- فیلم از رو (برای مقایسهٔ توالی تغییر شکل) و ثبت نیرو-جابه‌جایی.
+- متریک‌ها را با همان `extract_outputs_v4.py` (`--height 49.13`) از منحنی تجربی استخراج کن تا تعریف‌ها یکی باشد. EA تا 16 mm را هم به عنوان متریک پنجرهٔ ثابت گزارش کن.
+
+## معیارهای قبولی (همان فایل پیش‌ثبت)
+1. ترتیب EA تجربی: P4 < P3 < P2 < P5 < P1. Spearman = 1 روی پنج طرح.
+2. پس از کالیبراسیون تک‌ضریبی k از P1-P4: |EA_exp(P5) - k·190.1| ≤ 2k·12.5 J.
+3. سطح مطلق: انتظار داریم FE حدود ۱۵٪ بیشتر برآورد کند (مقایسهٔ 5x5)؛ گزارش می‌شود، ادعا نمی‌شود.
+4. P4 رو به بالا در برابر وارونه: اختلاف تجربی گزارش و با ۲۵٪ FE مقایسه شود.
+
+## منابع
+- Choudhry, N. K., et al. (2021). In-plane energy absorption characteristics of a modified re-entrant auxetic structure fabricated via 3D printing. *Composites Part B*. https://consensus.app/papers/details/e854162fc3665718a47010dfbf26f449/
+- Mortezapour, A., et al. (2024). Energy absorption of multi-scale hierarchically graded auxetic structures: experimental and simulation methods. *Progress in Additive Manufacturing*. https://consensus.app/papers/details/5a8bedd14c4f531e9e323e94fcc92eec/
+- Sadigh, M., et al. (2026). A novel hybrid energy absorption mechanism … press-fit reinforced re-entrant under quasi-static compression. *Materials Today Communications*. https://consensus.app/papers/details/fe662759af8a580ab6e5ce9cc5133965/
+- Lee, S., et al. (2022). Generative machine learning algorithm for lattice structures with superior mechanical properties. *Materials Horizons*. https://consensus.app/papers/details/dffc9675f8a65b98970d5c6ca6f6f3bf/
+- Xiao, L.-J., et al. (2024). Machine learning predictions on the compressive stress–strain response of lattice-based metamaterials. *Int. J. Solids and Structures*. https://consensus.app/papers/details/909600bb4408583fb62a15c2308810ea/
+- Yüksel, N., et al. (2023). Mechanical properties of additively manufactured lattice structures designed by deep learning. *Thin-Walled Structures*. https://consensus.app/papers/details/38973d023e3e592bad7b009360b48ee7/
+- Torrado, A. R., et al. (2016). Failure analysis and anisotropy evaluation of 3D-printed tensile test specimens of different geometries and print raster patterns. *J. Failure Analysis and Prevention*. https://consensus.app/papers/details/464dd6eedb6d56149279bda3a9580a8f/
+- Faidallah, R. F., et al. (2023). Effect of different standard geometry shapes on the tensile properties of 3D-printed polymer. *Polymers*. https://consensus.app/papers/details/b62b8d10b69b5d24b6b9a742730b3e11/
+- Keleş, Ö., et al. (2017). Effect of build orientation on the mechanical reliability of 3D printed ABS. *Rapid Prototyping Journal*. https://consensus.app/papers/details/cef89b52e4bf565dbf80f50f1660b530/
+- Dalakoti et al. (2026) — از یادداشت تأییدشدهٔ پروژه، LIT_VERIFIED_2026-09-04.md.
+- ISO 13314:2011 (فشار مواد متخلخل)، ISO 527-2، ASTM D638، ASTM D695 — متن کامل ISO 13314 در پوشه فقط پیش‌نمایش است؛ بند ۶.۲ (تعداد نمونه) را از نسخهٔ کامل چک کن.
+
+## فایل‌های این پوشه
+`STL/` · `patterns_preview.png` · `validation_patterns_v1.csv` · `blind_GP01_hamming_audit.csv` · `REGISTRATION_blind_GP01_2026-10-06.md` (+ `.sha256`) · `stl_manifest.json` (حجم، جرم هدف، SHA-256 هر STL) · `make_stl_v1.py` (فقط numpy و matplotlib؛ با `python make_stl_v1.py` همهٔ STLها و شکل دوباره ساخته می‌شوند) · `geometry_33cell_from_drawing.json` (هندسهٔ مثلث‌بندی‌شده) · `derive_geometry_from_pdf.py` (نحوهٔ استخراج هندسه از PDF، برای مستندسازی).
+پوشهٔ `_to_delete` فقط فایل‌های موقت انتقال است و می‌توانی پاکش کنی.

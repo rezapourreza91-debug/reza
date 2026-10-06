@@ -1,0 +1,74 @@
+{
+ "P1_1097": {
+  "file": "STL/P1_1097.stl",
+  "pattern": "000100000110000111000011000010100",
+  "triangles": 1648,
+  "closed_manifold": true,
+  "volume_mm3": 47085.9,
+  "target_mass_g": 48.97,
+  "sha256": "4da8553851f6e37854c09cb032fdba0ce7eaba1da1b23c19ad32157635527270"
+ },
+ "P2_1104": {
+  "file": "STL/P2_1104.stl",
+  "pattern": "110001010000001000001000101100100",
+  "triangles": 1648,
+  "closed_manifold": true,
+  "volume_mm3": 47085.9,
+  "target_mass_g": 48.97,
+  "sha256": "5e2865e89552fad189aac86ff518de3964d64eb6cb08b3da0423e4bc7b91338e"
+ },
+ "P3_1016": {
+  "file": "STL/P3_1016.stl",
+  "pattern": "100010001000100010001000100011010",
+  "triangles": 1648,
+  "closed_manifold": true,
+  "volume_mm3": 47085.9,
+  "target_mass_g": 48.97,
+  "sha256": "123d5493ffc44cdfbc9271dabc3442aa614155abe4c29402c7baf56326c07a86"
+ },
+ "P4_1093": {
+  "file": "STL/P4_1093.stl",
+  "pattern": "000000000000000000000111001111111",
+  "triangles": 1648,
+  "closed_manifold": true,
+  "volume_mm3": 47085.1,
+  "target_mass_g": 48.97,
+  "sha256": "83239d2d138c6d990e59838821ab3bae194869a711dea82b76ef82be0ddfbc5c"
+ },
+ "P5_BLIND_GP01": {
+  "file": "STL/P5_BLIND_GP01.stl",
+  "pattern": "000110000011000001100001010001001",
+  "triangles": 1648,
+  "closed_manifold": true,
+  "volume_mm3": 47086.0,
+  "target_mass_g": 48.97,
+  "sha256": "a6f369241301f31c264aeda16d11d8ae3feb9697bef6c9b345ee995134e73eb6"
+ },
+ "X1_empty_frame": {
+  "file": "STL/X1_empty_frame.stl",
+  "pattern": "000000000000000000000000000000000",
+  "triangles": 1688,
+  "closed_manifold": true,
+  "volume_mm3": 36395.8,
+  "target_mass_g": 37.85,
+  "sha256": "8f58d4f85c7ba4181abf6c3eccfb643239b8ef276ff919e940a14293080980c2"
+ },
+ "T1_tensile_ISO527-2_1BA": {
+  "file": "STL/T1_tensile_ISO527-2_1BA.stl",
+  "pattern": null,
+  "triangles": 652,
+  "closed_manifold": true,
+  "volume_mm3": 1012.2,
+  "target_mass_g": 1.05,
+  "sha256": "fb73eef781e3ae8ca081b2aed99be5762ededab464aca0a9feb725ff6547a958"
+ },
+ "T2_compression_ASTM-D695_prism": {
+  "file": "STL/T2_compression_ASTM-D695_prism.stl",
+  "pattern": null,
+  "triangles": 12,
+  "closed_manifold": true,
+  "volume_mm3": 4096.8,
+  "target_mass_g": 4.26,
+  "sha256": "d64174261abf9e4a82ee42172b2958f1d30c28391d142afe429c10c6c63fcb2e"
+ }
+}
