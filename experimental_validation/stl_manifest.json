@@ -44,6 +44,15 @@
   "target_mass_g": 48.97,
   "sha256": "a6f369241301f31c264aeda16d11d8ae3feb9697bef6c9b345ee995134e73eb6"
  },
+ "P6_BLIND_GP02": {
+  "file": "STL/P6_BLIND_GP02.stl",
+  "pattern": "000011000011001010000010010000101",
+  "triangles": 1648,
+  "closed_manifold": true,
+  "volume_mm3": 47086.0,
+  "target_mass_g": 48.97,
+  "sha256": "9a0cb2ae3b25471bb7194bfe9b10e59592946da7217f4ecddf482a82420d3c37"
+ },
  "X1_empty_frame": {
   "file": "STL/X1_empty_frame.stl",
   "pattern": "000000000000000000000000000000000",

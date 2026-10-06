@@ -26,6 +26,7 @@ SPECIMENS = {
     "P3_1016":        "100010001000100010001000100011010",
     "P4_1093":        "000000000000000000000111001111111",
     "P5_BLIND_GP01":  "000110000011000001100001010001001",
+    "P6_BLIND_GP02":  "000011000011001010000010010000101",
     "X1_empty_frame": "0" * 33,
 }
 
@@ -124,13 +125,15 @@ def preview():
            "P3_1016": "P3  run 1016  FE EA 114.3 J  (dispersed, peak)",
            "P4_1093": "P4  run 1093  FE EA 62.4 J  (bottom band, worst)\nupside down = run 1094 (FE 77.9 J)",
            "P5_BLIND_GP01": "P5  BLIND GP01  never simulated\nGP predicts EA 190 +/- 13 J",
+           "P6_BLIND_GP02": "P6  BLIND GP02  never simulated, 8+ cells from all\nGP predicts EA 136 +/- 11 J",
            "X1_empty_frame": "X1  empty frame (optional)"}
-    fig, axs = plt.subplots(2, 3, figsize=(15, 8.6))
+    fig, axs = plt.subplots(2, 4, figsize=(20, 8.6))
+    axs.ravel()[-1].axis("off")
     for ax, (n, p) in zip(axs.ravel(), SPECIMENS.items()):
         ax.add_collection(PolyCollection([V[t] for t in G["FT"]], facecolor="#9aa3ad", edgecolor="#9aa3ad", lw=0.3))
         for i, ts in enumerate(G["CT"]):
             if p[i] == "1":
-                col = "#b4342a" if n.startswith("P5") else "#1f7a3a"
+                col = "#b4342a" if "BLIND" in n else "#1f7a3a"
                 ax.add_collection(PolyCollection([V[t] for t in ts], facecolor=col, edgecolor=col, lw=0.3))
             c = V[G["CO"][i]].mean(0)
             ax.text(c[0], c[1], str(i + 1), ha="center", va="center", fontsize=6.5, color="white" if p[i] == "1" else "#555")
