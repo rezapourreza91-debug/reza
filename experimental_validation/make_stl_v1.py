@@ -24,7 +24,7 @@ SPECIMENS = {
     "P1_1097":        "000100000110000111000011000010100",
     "P2_1104":        "110001010000001000001000101100100",
     "P3_1016":        "100010001000100010001000100011010",
-    "P4_1093":        "000000000000000000000111001111111",
+    "P4_1049":        "000001001100010001100000101110000",
     "P5_BLIND_GP01":  "000110000011000001100001010001001",
     "P6_BLIND_GP02":  "000011000011001010000010010000101",
     "X1_empty_frame": "0" * 33,
@@ -123,7 +123,7 @@ def preview():
     lab = {"P1_1097": "P1  run 1097  FE EA 214.6 J  (best, knee)",
            "P2_1104": "P2  run 1104  FE EA 159.6 J  (one vertical chain, peak)",
            "P3_1016": "P3  run 1016  FE EA 114.3 J  (dispersed, peak)",
-           "P4_1093": "P4  run 1093  FE EA 62.4 J  (bottom band, worst)\nupside down = run 1094 (FE 77.9 J)",
+           "P4_1049": "P4  run 1049  FE EA 85.8 J  (dispersed, peak)\nlowest-EA design with no fully filled row",
            "P5_BLIND_GP01": "P5  BLIND GP01  never simulated\nGP predicts EA 190 +/- 13 J",
            "P6_BLIND_GP02": "P6  BLIND GP02  never simulated, 8+ cells from all\nGP predicts EA 136 +/- 11 J",
            "X1_empty_frame": "X1  empty frame (optional)"}
