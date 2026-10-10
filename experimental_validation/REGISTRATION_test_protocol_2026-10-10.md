@@ -180,3 +180,24 @@ F_plat 11.68 kN.
   statements of section 7 stand (GP01 with the known bias 0.75; specimen scatter alone 0.91 and
   0.96; two designs 0.88 and 0.73), except that rho >= 0.9 with five designs is now reached in
   0.988 or more of draws (0.991 before at cv 15 %); it still carries almost no evidence.
+
+### Amendment 2 - 2026-10-10, before any specimen was printed, weighed or tested (case A chosen)
+The first 12,165 bytes of this file, up to the end of Amendment 1, are unchanged (sha256 of that
+part: `ef75a7f883078082f7bd6a7c8e595150ec9762fec8ecdedd1b05691be3c1de11`).
+
+**What changed.** On 2026-10-10 at 16:53 UTC the owner chose case A of section 2 on the decision
+card in the project thread: every specimen is printed from `STL_FEgeom/`. The files sent to the
+printer are those listed in `STL_FEgeom/stl_manifest_FEgeom.json`, re-checked on 2026-10-10:
+
+| design | file | sha256 | target mass |
+|---|---|---|---|
+| P1 (1097) | `P1_1097_FEgeom.stl` | `a942d466c56cd03f10e2ae4aa34e0957fa0f55936ec8540938aad98d3eeb894e` | 47.83 g |
+| P2 (1104) | `P2_1104_FEgeom.stl` | `fbff2d2b6bd195967e3b9e09e21dd4dc70512af52c48e2584dd053bb8af3cd93` | 47.92 g |
+| P3 (1016) | `P3_1016_FEgeom.stl` | `8c6c27b41e80a1a13940a5eb26d2b0c190452db9b93df055f495087ade2de5a9` | 47.83 g |
+| P4 (1049) | `P4_1049_FEgeom.stl` | `cae64da6789d9cd8d4bde6b3095ad9abeb7d15f12a53b005b60432d88f738510` | 47.92 g |
+| P5 (GP01) | `P5_BLIND_GP01_FEgeom.stl` | `d8e391ebb45a0a48c2af6b89a7a7b516b0e1712676dd2ce23797435665d20b00` | 47.83 g |
+| P6 (GP02) | `P6_BLIND_GP02_FEgeom.stl` | `6d8a41f2ee060d76f5c87eab263aa36855ec182d997af184014fc7086ba675d3` | 47.83 g |
+| X1 (optional) | `X1_empty_frame_FEgeom.stl` | `87d8f63997500725dc37e8caf2c9aea62c5d764d95d8cc53a40fb5f8b8bf5c65` | outside every criterion |
+
+Section 2 still applies to any specimen that is nevertheless printed from `STL/`: it is
+identified by its sha256 (section 3, step 1) and reported as case B. Nothing else changes.
