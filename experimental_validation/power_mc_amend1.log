@@ -1,0 +1,9 @@
+scatter only   cv 0.05 n 3  GP01_between 0.999 GP02_between 1.000 rho5_eq1 0.999 rho5_ge09 1.000 rho6_eq1 0.999 rho6_ge09 1.000
+scatter only   cv 0.10 n 3  GP01_between 0.914 GP02_between 0.956 rho5_eq1 0.914 rho5_ge09 1.000 rho6_eq1 0.873 rho6_ge09 0.997
+scatter only   cv 0.15 n 3  GP01_between 0.761 GP02_between 0.823 rho5_eq1 0.750 rho5_ge09 0.988 rho6_eq1 0.613 rho6_ge09 0.947
+GP sd included cv 0.05 n 3  GP01_between 0.931 GP02_between 0.931 rho5_eq1 0.931 rho5_ge09 1.000 rho6_eq1 0.866 rho6_ge09 0.995
+GP sd included cv 0.10 n 3  GP01_between 0.828 GP02_between 0.849 rho5_eq1 0.828 rho5_ge09 1.000 rho6_eq1 0.700 rho6_ge09 0.973
+GP sd included cv 0.15 n 3  GP01_between 0.703 GP02_between 0.742 rho5_eq1 0.692 rho5_ge09 0.988 rho6_eq1 0.505 rho6_ge09 0.904
+GP sd + known high-EA bias +9.3 J, cv 0.10: GP01_between 0.750 GP02_between 0.851 rho5_eq1 0.749 rho5_ge09 1.000 rho6_eq1 0.636 rho6_ge09 0.962
+two designs, gap 10 %, cv 10 %, n 3: P(correct order) 0.878
+two designs, gap 5 %, cv 10 %, n 3: P(correct order) 0.725

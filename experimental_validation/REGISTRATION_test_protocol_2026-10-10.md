@@ -133,3 +133,50 @@ timestamp. Uploading it to OSF or Zenodo for a DOI is recommended before the fir
 
 ## Amendments
 (none)
+
+### Amendment 1 - 2026-10-10, before any specimen was printed, weighed or tested (P4 = run 1049)
+The line "(none)" above was true when this protocol was registered. The first 8726 bytes of this
+file, up to and including that line, are the registered version, byte for byte (sha256
+`a1885f3094ca4d34b3ff276d84ba0143000cde5d3f3e524e4f868d6d019f4374`; committed in `H:\claude` as
+48d209d and timestamped in github.com/rezapourreza91-debug/reza, commit d9fb84b).
+
+**What changed.** P4 is now run 1049, by `REGISTRATION_amendment_P4_2026-10-10.md` (sha256
+`222eec5e749f6f42cc467c2eac736e8a14f2f45a7a29b62535d31a393f39d2fd`), written at the owner's request:
+run 1093 fills the whole bottom row (c27-c33), which then acts as a solid band, so that specimen
+behaves as a four-row lattice. Run 1049 is `000001001100010001100000101110000` (filled c6 c9 c10 c14
+c18 c19 c25 c27 c28 c29; 1-2-3-1-3 cells per row), the same vector as run 1049 in
+`_ARCHIVE/old_datasets/FINAL_DATASET_n123.xlsx`. FE values (`UNIFIED_DATASET_v4.xlsx`): EA_dd 85.8 J,
+F_plat 11.68 kN.
+
+**Changes to the sections above.**
+- Section 1: P4 = run 1049, tested upright only, 3 specimens, so 18 specimens in total. The inverted
+  P4 (P4I, formerly FE run 1094) is withdrawn, because the upside-down twin of 1049
+  (`111000000001010001100110000000010`) has no FE run. Three P4I specimens may be added only by a
+  further amendment written before the first P4 test, and only if that twin has been simulated by then.
+- Section 2: case A file `STL_FEgeom/P4_1049_FEgeom.stl` (sha256
+  `cae64da6789d9cd8d4bde6b3095ad9abeb7d15f12a53b005b60432d88f738510`, built by
+  `STL_FEgeom/make_stl_fe_amend1.py` with the unchanged builder; closed manifold; plane area
+  1843.17 mm2), target mass 47.92 g, because 1049 has three filled cells in rows 2 and 4, like P2.
+  Case B file `STL/P4_1049.stl` (sha256 `0c40d3554491331413615c693c242f13472a86f507b815fac7fde417124c218c`),
+  target mass 48.97 g, 2.2 % more solid area than the FE model, as for P2. The file
+  `P4_1093_FEgeom.stl` was moved to `STL_FEgeom/_superseded_2026-10-10/` and is not printed.
+- Section 4: the three P4I IDs are removed and P4U-1..3 are renamed P4-1..3; the order of the rest
+  is kept:
+  `P4-3 P3-2 P5-3 P3-1 P4-2 P2-1 P5-2 P4-1 P2-2 P5-1 P6-1 P1-3 P6-2 P1-1 P2-3 P1-2 P3-3 P6-3`
+- Section 6: in P, S1, S2, S4 and S5, P4 (P4U) means run 1049, and S2 uses EA_FE(P4) = 85.8 J.
+  S1 no longer has a "P4I if tested" design. S3 (upright vs inverted) is withdrawn.
+- The registered rank order is unchanged, and P4 is still the lowest: P4 (1049, 85.8 J) < P3 (1016,
+  114.3 J) < P6 (GP02, 136.3 J) < P2 (1104, 159.6 J) < P5 (GP01, 190.1 J) < P1 (1097, 214.6 J).
+- Section 7, recomputed with P4 = 85.8 J (`power_mc_amend1.py`, identical to `power_mc.py` except
+  for that value; same seed and number of draws):
+
+| cv | GP01 between P2 and P1 | GP02 between P3 and P2 | rho = 1, five designs | rho = 1, six designs |
+|---|---|---|---|---|
+| 5 % | 0.93 | 0.93 | 0.93 | 0.87 |
+| 10 % | 0.83 | 0.85 | 0.83 | 0.70 |
+| 15 % | 0.70 | 0.74 | 0.69 | 0.51 |
+
+  Only one cell changes at two decimals (rho = 1, five designs, cv 15 %: 0.70 before). The other
+  statements of section 7 stand (GP01 with the known bias 0.75; specimen scatter alone 0.91 and
+  0.96; two designs 0.88 and 0.73), except that rho >= 0.9 with five designs is now reached in
+  0.988 or more of draws (0.991 before at cv 15 %); it still carries almost no evidence.
